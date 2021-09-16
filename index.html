@@ -76,5 +76,42 @@
             <td>1.40</td>
         </tr>
     </table>
+    <hr>
+    <h4> Linear Diophantine Equation from Linear Algebra </h4>
+        <blackquote>
+            Linear algebra is about linear combinations. That is, using arithmetic on columns of numbers called vectors and arrays of numbers called matrices, to create new columns and arrays of numbers. Linear algebra is the study of lines and planes, vector spaces and mappings that are required for linear transforms.
+            It is more than just the implementation of linear algebra operations in code libraries; it also includes the careful handling of the problems of applied mathematics, such as working with the limited floating point precision of digital computers.
+            <a href="https://machinelearningmastery.com/gentle-introduction-linear-algebra/">Link to source file</a>
+
+        </blackquote>
+        <pre>  
+            int gcd(int a, int b, int& x, int& y) {
+                if (b == 0) {
+                    x = 1;
+                    y = 0;
+                    return a;
+                }
+                int x1, y1;
+                int d = gcd(b, a % b, x1, y1);
+                x = y1;
+                y = x1 - y1 * (a / b);
+                return d;
+            }
+            
+            bool find_any_solution(int a, int b, int c, int &x0, int &y0, int &g) {
+                g = gcd(abs(a), abs(b), x0, y0);
+                if (c % g) {
+                    return false;
+                }
+            
+                x0 *= c / g;
+                y0 *= c / g;
+                if (a < 0) x0 = -x0;
+                if (b < 0) y0 = -y0;
+                return true;
+            }
+               
+        </pre>
+
 </body>
 </html>
